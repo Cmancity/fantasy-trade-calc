@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fantasy Trade Calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Fantasy Trade Calculator</h1>
+  <nav id="tabs" class="hidden">
+    <button data-tab="dashboard" class="active">Dashboard</button>
+    <button data-tab="trade">Trade Calculator</button>
+    <button data-tab="recommend">Recommendations</button>
+    <button data-tab="league">League Intel</button>
+    <button id="change-league-btn">Change League</button>
+  </nav>
+</header>
+
+<main>
+  <section id="setup">
+    <h2>Setup</h2>
+    <div class="field-row">
+      <label>Sleeper username <input id="username-input" type="text" placeholder="e.g. mahomes15"></label>
+      <label>Season <input id="season-input" type="text" value="2026"></label>
+      <button id="find-leagues-btn">Find Leagues</button>
+    </div>
+    <div id="league-list"></div>
+    <p id="setup-error" class="error"></p>
+  </section>
+
+  <section id="dashboard" class="tab-pane hidden">
+    <h2>My Roster</h2>
+    <div id="dynasty-toggle">
+      <label><input type="checkbox" id="is-dynasty-override"> Force dynasty valuation</label>
+    </div>
+    <div id="my-roster"></div>
+  </section>
+
+  <section id="trade" class="tab-pane hidden">
+    <h2>Trade Calculator</h2>
+    <div class="trade-grid">
+      <div class="trade-side">
+        <h3>Team A</h3>
+        <select id="team-a-select"></select>
+        <div id="team-a-players" class="player-picker"></div>
+      </div>
+      <div class="trade-side">
+        <h3>Team B</h3>
+        <select id="team-b-select"></select>
+        <div id="team-b-players" class="player-picker"></div>
+      </div>
+    </div>
+
+    <div id="package-section">
+      <h3>Propose a Package Trade</h3>
+      <p class="reason">Check players on Team A as your package. Return positions are pre-checked from Team A's
+        needs — adjust as you like, then propose to Team B directly or search every team at once. Biased using
+        Team A's positional needs, so giving up a surplus player doesn't require full value back for it.</p>
+
+      <div class="field-row">
+        <span class="field-label">Return positions:</span>
+        <div id="package-positions" class="position-filter"></div>
+      </div>
+
+      <div class="field-row">
+        <button id="propose-package-btn">Propose Package to Team B</button>
+        <button id="find-package-all-btn">Find Across All Teams</button>
+      </div>
+      <div id="package-suggestions"></div>
+    </div>
+
+    <button id="evaluate-trade-btn">Evaluate Trade</button>
+    <div id="trade-result"></div>
+  </section>
+
+  <section id="recommend" class="tab-pane hidden">
+    <h2>Recommendations</h2>
+
+    <div id="shop-section">
+      <h3>Shop My Players</h3>
+      <p class="reason">Select players you're open to trading. Results are deliberately skewed to favor
+        you by the margin below — for finding offers worth proposing, not for judging fairness.</p>
+      <div class="field-row">
+        <label>Min edge % <input id="favor-min" type="number" value="5" min="0" max="500"></label>
+        <label>Max edge % <input id="favor-max" type="number" value="20" min="0" max="500"></label>
+        <button id="find-shop-matches-btn">Find Favorable Trades</button>
+      </div>
+      <div id="my-shop-players" class="player-picker"></div>
+      <div id="shop-matches"></div>
+    </div>
+
+    <div id="needs-summary"></div>
+    <div id="suggestions"></div>
+  </section>
+
+  <section id="league" class="tab-pane hidden">
+    <h2>League Intel</h2>
+
+    <h3>Team Needs &amp; Power Ranking</h3>
+    <p class="reason">Every team's roster value and per-position need/surplus vs. the league average, ranked by total value.</p>
+    <div id="league-teams"></div>
+
+    <h3>Waiver Wire</h3>
+    <p class="reason">Unrostered players in this league, valued and checked against your weakest player at that
+      position — plus how many Sleeper managers (leaguewide) have added them in the last 24h.</p>
+    <div class="field-row">
+      <label>Position
+        <select id="waiver-position">
+          <option value="">All</option>
+          <option value="QB">QB</option>
+          <option value="RB">RB</option>
+          <option value="WR">WR</option>
+          <option value="TE">TE</option>
+        </select>
+      </label>
+      <button id="load-waivers-btn">Load Waiver Wire</button>
+    </div>
+    <div id="waiver-wire"></div>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

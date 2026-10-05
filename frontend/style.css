@@ -1,0 +1,119 @@
+:root {
+  --bg: #0f172a;
+  --panel: #1e293b;
+  --border: #334155;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --good: #22c55e;
+  --warn: #f59e0b;
+  --bad: #ef4444;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+header h1 { margin: 0; font-size: 1.25rem; }
+
+nav button {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 0.4rem;
+}
+
+nav button.active { background: var(--accent); color: #0f172a; border-color: var(--accent); }
+
+main { padding: 1.5rem; max-width: 1000px; margin: 0 auto; }
+
+section { margin-bottom: 2rem; }
+
+.hidden { display: none !important; }
+
+.field-row {
+  display: flex;
+  gap: 1rem;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.field-row label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; color: var(--muted); }
+
+input, select, button {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.95rem;
+}
+
+button { cursor: pointer; }
+button:hover { border-color: var(--accent); }
+
+#league-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+#league-list button { align-self: flex-start; }
+
+.error { color: var(--bad); }
+.warn { color: var(--warn); }
+
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--border); }
+tr.unvalued td { color: var(--muted); font-style: italic; }
+
+.trade-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.trade-side { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; }
+.player-picker { max-height: 300px; overflow-y: auto; margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.25rem; }
+.player-checkbox { display: flex; gap: 0.5rem; align-items: center; font-size: 0.9rem; }
+
+#evaluate-trade-btn { margin-top: 1rem; }
+
+#trade-result { margin-top: 1rem; }
+.verdict { padding: 0.75rem; border-radius: 6px; margin-bottom: 0.5rem; }
+.verdict.fair { background: rgba(34,197,94,0.15); border: 1px solid var(--good); }
+.verdict.slight-edge { background: rgba(245,158,11,0.15); border: 1px solid var(--warn); }
+.verdict.lopsided { background: rgba(239,68,68,0.15); border: 1px solid var(--bad); }
+
+.suggestion-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.suggestion-card .reason { color: var(--muted); font-size: 0.85rem; }
+
+#dynasty-toggle { margin-bottom: 1rem; font-size: 0.9rem; color: var(--muted); }
+
+tr.my-team-row { background: rgba(56,189,248,0.08); }
+tr.my-team-row td:first-child { font-weight: 600; color: var(--accent); }
+
+.worth-worth-it { color: var(--good); font-weight: 600; }
+.worth-marginal { color: var(--warn); }
+.worth-skip { color: var(--muted); }
+.worth-no-bench-reference { color: var(--muted); font-style: italic; }
+
+#league h3 { margin-top: 2rem; }
+
+.field-label { font-size: 0.85rem; color: var(--muted); align-self: center; }
+.position-filter { display: flex; gap: 0.9rem; align-items: center; }
+.position-filter label { display: flex; gap: 0.35rem; align-items: center; font-size: 0.9rem; flex-direction: row; }
